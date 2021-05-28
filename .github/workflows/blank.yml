@@ -27,6 +27,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: PRINT FILE
-        run: CAT README.md
+        run: cat README.md
 
      

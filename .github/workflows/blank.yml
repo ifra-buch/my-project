@@ -28,5 +28,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: PRINT FILE
         run: cat README.md
-
+        
+      - name: login to dockerhub
+        run: cat README.md
+        
+      - name: build and push docker image
+        run: |
+           docker build -t ifrabuch/sample:1
+           docker push ifrabuch/sample:1
      

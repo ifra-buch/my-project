@@ -34,6 +34,6 @@ jobs:
         
       - name: build and push docker image
         run: |
-           docker build -t ifrabuch/sample:1
-           docker push ifrabuch/sample:1
+           docker build -t ifrabuch/sample:1 .
+           docker push ifrabuch/sample:1 
      

@@ -41,11 +41,20 @@ jobs:
            docker push ifrabuch/sample:1 
            
       - name: deploy  on heroku
-      - run: |
-              heroku login
-              docker login --username= ifra.buch@cryptlex.com password=${{secrets.heroku_password}} registry.heroku.com/nvtapi/web
-              docker push registry.heroku.com/nvtapi/web
-              heroku container:realse web -a nvtapi
+    
+        env:
+          HEROKU_USERNAME : ${{ secrets.HEROKU_USERNAME}}
+          HEROKU_PASSWORD: ${{ secrets.HEROKU_PASSWORD}}
+          
+        run: |
+         heroku login 
+         docker login --username= ${{ secrets.HEROKU_USERNAME }} password=${{ secrets.HEROKU_PASSWORD }} registry.heroku.com/nvtapi/web
+        
+      - name: docker push heroku
+        run:  docker push registry.heroku.com/nvtapi/web
+        
+      - name: heroku release 
+        run: heroku container:release web -a nvtapi
  
       
          

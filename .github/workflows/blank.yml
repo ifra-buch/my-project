@@ -39,4 +39,14 @@ jobs:
         run: |
            docker build -t ifrabuch/sample:1 .
            docker push ifrabuch/sample:1 
+           
+      - name: deploy  on heroku
+      - run: |
+              heroku login
+              docker login --username= ifra.buch@cryptlex.com password=${{secrets.heroku_password}} registry.heroku.com/nvtapi/web
+              docker push registry.heroku.com/nvtapi/web
+              heroku container:realse web -a nvtapi
+ 
+      
+         
      
